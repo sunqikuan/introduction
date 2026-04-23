@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <!-- viewport 让页面在移动设备和电脑上都能正常显示 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>二楠 | 产品经理 Portfolio</title>
+    
+    <!-- ========== 样式定义开始 ========== -->
+    <style>
+        /* -------------------- 基础重置与全局样式 -------------------- */
+        * {
+            margin: 0;
+            padding: 0;
+            /* 使用 border-box 盒子模型，方便计算元素大小 */
+            box-sizing: border-box;
+        }
+
+        body {
+            /* 使用系统默认字体，fallback 到 sans-serif */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            /* 文字颜色：深灰色，类似 GitHub */
+            color: #24292e;
+            /* 页面背景色：浅灰色 */
+            background-color: #f6f8fa;
+            /* 行高设置为 1.6，让文字更有呼吸感 */
+            line-height: 1.6;
+        }
+
+        /* -------------------- 链接样式 -------------------- */
+        a {
+            color: #0366d6;  /* GitHub 蓝色 */
+            text-decoration: none;  /* 去掉下划线 */
+            transition: color 0.3s;  /* 颜色变化加过渡动画 */
+        }
+
+        a:hover {
+            color: #0550ae;  /* 鼠标悬停时颜色加深 */
+            text-decoration: underline;  /* 悬停时显示下划线 */
+        }
+
+        /* -------------------- 导航栏样式 -------------------- */
+        .navbar {
+            /* 固定在顶部 */
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            /* 白色背景带底部阴影 */
+            background-color: #ffffff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            /* 导航栏高度 */
+            height: 60px;
+            /* 让导航栏内容垂直居中 */
+            display: flex;
+            align-items: center;
+            /* 中间对齐，两端分布 */
+            justify-content: space-between;
+            padding: 0 20px;
+            /* 层级最高 */
+            z-index: 1000;
+        }
+
+        /* 导航栏左侧：名字/Logo */
+        .navbar-brand {
+            font-size: 1.2rem;
+            font-weight: 600;  /* 字体加粗 */
+            color: #24292e;
+        }
+
+        /* 导航栏右侧：导航链接 */
+        .navbar-links {
+            display: flex;
+            gap: 20px;  /* 链接之间的间距 */
+        }
+
+        .navbar-links a {
+            color: #586069;  /* 灰色文字 */
+            font-size: 0.9rem;
+        }
+
+        .navbar-links a:hover {
+            color: #0366d6;
+        }
+
+        /* -------------------- 主内容区域 -------------------- */
+        .main-content {
+            /* 留出顶部导航栏的高度，避免内容被遮挡 */
+            margin-top: 60px;
+        }
+
+        /* -------------------- 通用容器样式 -------------------- */
+        .container {
+            /* 页面内容最大宽度 */
+            max-width: 900px;
+            /* 水平居中 */
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* -------------------- Section（区域）通用样式 -------------------- */
+        .section {
+            /* 每个区域底部留出间距 */
+            margin-bottom: 60px;
+        }
+
+        /* 区域标题样式 */
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #24292e;
+            /* 标题下方加一条分隔线 */
+            border-bottom: 1px solid #e1e4e8;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+
+        /* -------------------- Hero 区域（首页自我介绍） -------------------- */
+        .hero {
+            /* 白色背景卡片 */
+            background-color: #ffffff;
+            border-radius: 6px;  /* 圆角 */
+            padding: 50px;
+            /* 边框样式，类似 GitHub 的边框 */
+            border: 1px solid #e1e4e8;
+            text-align: center;
+        }
+
+        /* 头像样式 */
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;  /* 圆形头像 */
+            background-color: #0366d6;  /* 蓝色背景占位 */
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 600;
+            /* 居中显示 */
+            margin: 0 auto 20px;
+        }
+
+        /* 名字标题 */
+        .hero h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        /* 副标题/职位 */
+        .hero .subtitle {
+            font-size: 1.1rem;
+            color: #586069;
+            margin-bottom: 20px;
+        }
+
+        /* 社交链接 */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            padding: 8px 16px;
+            background-color: #f6f8fa;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: #f3f4f6;
+            border-color: #0366d6;
+            text-decoration: none;
+        }
+
+        /* -------------------- 关于我区域 -------------------- */
+        .about-content {
+            background-color: #ffffff;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            padding: 30px;
+        }
+
+        .about-content h3 {
+            color: #0366d6;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .about-content p {
+            margin-bottom: 15px;
+            color: #24292e;
+        }
+
+        /* 技能标签容器 */
+        .skills {
+            display: flex;
+            flex-wrap: wrap;  /* 允许换行 */
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        /* 单个技能标签 */
+        .skill-tag {
+            background-color: #f1f8ff;  /* 浅蓝色背景 */
+            color: #0366d6;  /* 蓝色文字 */
+            padding: 5px 12px;
+            border-radius: 20px;  /* 圆角胶囊形状 */
+            font-size: 0.85rem;
+            border: 1px solid #c8e1ff;
+        }
+
+        /* -------------------- 项目卡片区域 -------------------- */
+        .projects-grid {
+            display: grid;
+            /* CSS Grid 自动适应列数 */
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+        }
+
+        /* 单个项目卡片 */
+        .project-card {
+            background-color: #ffffff;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            padding: 25px;
+            /* 鼠标悬停时卡片微微上浮 */
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 项目标题 */
+        .project-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #24292e;
+        }
+
+        /* 项目描述 */
+        .project-card p {
+            color: #586069;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        /* 项目标签 */
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .project-tag {
+            background-color: #f6f8fa;
+            color: #586069;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        /* 项目链接 */
+        .project-link {
+            display: inline-block;
+            color: #0366d6;
+            font-size: 0.9rem;
+        }
+
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        /* -------------------- 工作经历区域 -------------------- */
+        .experience-item {
+            background-color: #ffffff;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .experience-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #24292e;
+        }
+
+        .experience-period {
+            color: #586069;
+            font-size: 0.9rem;
+        }
+
+        .experience-company {
+            color: #0366d6;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .achievements {
+            list-style: none;  /* 去掉默认列表样式 */
+            padding-left: 0;
+        }
+
+        .achievements li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            color: #586069;
+        }
+
+        /* 用伪元素添加列表前的标记符号 */
+        .achievements li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #0366d6;
+        }
+
+        /* -------------------- 联系方式区域 -------------------- */
+        .contact-content {
+            background-color: #ffffff;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .contact-content p {
+            color: #586069;
+            margin-bottom: 20px;
+        }
+
+        .contact-email {
+            display: inline-block;
+            background-color: #0366d6;
+            color: #ffffff;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .contact-email:hover {
+            background-color: #0550ae;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        /* -------------------- 页脚 -------------------- */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #586069;
+            font-size: 0.85rem;
+            border-top: 1px solid #e1e4e8;
+            margin-top: 40px;
+        }
+
+        /* -------------------- 响应式设计 -------------------- */
+        /* 当屏幕宽度小于 768px 时（手机） */
+        @media (max-width: 768px) {
+            /* 导航栏调整 */
+            .navbar {
+                padding: 0 15px;
+            }
+
+            .navbar-links {
+                gap: 10px;
+            }
+
+            .navbar-links a {
+                font-size: 0.8rem;
+            }
+
+            /* Hero 区域调整 */
+            .hero {
+                padding: 30px 20px;
+            }
+
+            .avatar {
+                width: 100px;
+                height: 100px;
+                font-size: 2rem;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            /* 项目卡片：单列显示 */
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* 工作经历标题换行 */
+            .experience-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .experience-period {
+                margin-top: 5px;
+            }
+
+            /* 社交链接改为垂直排列 */
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            /* 容器内边距减小 */
+            .container {
+                padding: 30px 15px;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* -------------------- 平滑滚动效果 -------------------- */
+        /* 让点击导航链接时，页面滚动更平滑 */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* -------------------- 隐藏元素 -------------------- */
+        /* 用于响应式菜单（如果需要的话） */
+        .hidden {
+            display: none;
+        }
+    </style>
+    <!-- ========== 样式定义结束 ========== -->
+</head>
+<body>
+    <!-- ========== 导航栏 ========== -->
+    <nav class="navbar">
+        <div class="navbar-brand">二楠</div>
+        <div class="navbar-links">
+            <!-- href="#xxx" 是锚点链接，点击后会跳转到对应 id 的区域 -->
+            <a href="#home">首页</a>
+            <a href="#about">关于我</a>
+            <a href="#projects">项目展示</a>
+            <a href="#experience">工作经历</a>
+            <a href="#contact">联系方式</a>
+        </div>
+    </nav>
+
+    <!-- ========== 主内容区域 ========== -->
+    <main class="main-content">
+        
+        <!-- ========== 首页 / Hero 区域 ========== -->
+        <section id="home" class="container">
+            <div class="hero">
+                <!-- 头像：使用文字代替图片，方便用户替换 -->
+                <div class="avatar">楠</div>
+                
+                <!-- 姓名 -->
+                <h1>你好，我是二楠 👋</h1>
+                
+                <!-- 副标题 -->
+                <p class="subtitle">一年以上产品经理经验 · B端/供应链方向</p>
+                
+                <!-- 简短介绍 -->
+                <p>
+                    热爱产品设计，专注于B端供应链领域。<br>
+                    正在学习AI Agent开发，探索大模型与产品的结合。
+                </p>
+                
+                <!-- 社交/跳转链接 -->
+                <div class="social-links">
+                    <a href="#about">了解更多</a>
+                    <a href="#contact">联系我</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== 关于我区域 ========== -->
+        <section id="about" class="container section">
+            <h2 class="section-title">关于我</h2>
+            
+            <div class="about-content">
+                <!-- 个人简介 -->
+                <h3>👤 个人简介</h3>
+                <p>
+                    您好！我是一名拥有1年+产品经验的产品经理，专注于B端供应链领域。
+                    曾主导多个供应链核心系统（OTD、OMS、TMS）的产品设计与优化工作。
+                    目前正在学习AI Agent开发，致力于探索大模型在B端产品中的实际应用场景。
+                </p>
+                
+                <!-- 求职意向 -->
+                <h3>🎯 求职意向</h3>
+                <p>
+                    <strong>目标岗位：</strong>产品经理（B端/供应链方向）<br>
+                    <strong>期望行业：</strong>供应链、物流、制造业<br>
+                    <strong>发展兴趣：</strong>AI + 产品、Agent应用
+                </p>
+                
+                <!-- 技能清单 -->
+                <h3>🛠️ 技能清单</h3>
+                <div class="skills">
+                    <span class="skill-tag">产品设计</span>
+                    <span class="skill-tag">需求分析</span>
+                    <span class="skill-tag">供应链系统</span>
+                    <span class="skill-tag">OTD系统</span>
+                    <span class="skill-tag">OMS系统</span>
+                    <span class="skill-tag">TMS系统</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">C语言</span>
+                    <span class="skill-tag">AI Agent开发</span>
+                    <span class="skill-tag">豆包API</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== 项目展示区域 ========== -->
+        <section id="projects" class="container section">
+            <h2 class="section-title">项目展示</h2>
+            
+            <div class="projects-grid">
+                <!-- 项目1：天气预测Agent -->
+                <div class="project-card">
+                    <h3>🌤️ 天气预测Agent</h3>
+                    <p>
+                        基于AI Agent架构的天气预测助手，接入豆包API实现智能对话与天气查询功能。
+                        正在学习Agent开发，探索大语言模型在实际产品中的应用。
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">AI Agent</span>
+                        <span class="project-tag">豆包API</span>
+                        <span class="project-tag">Python</span>
+                    </div>
+                    <a href="#" class="project-link" onclick="alert('项目正在开发中，敬请期待！')">查看详情 →</a>
+                </div>
+
+                <!-- 项目2：OTD系统 -->
+                <div class="project-card">
+                    <h3>📦 OTD订单履约系统</h3>
+                    <p>
+                        订单到交付全流程管理系统，打通订单、生产、发运全链路，
+                        实现订单可视化追踪与自动化履约。
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">订单管理</span>
+                        <span class="project-tag">流程优化</span>
+                        <span class="project-tag">B端SaaS</span>
+                    </div>
+                    <a href="#experience" class="project-link">工作经历详情 →</a>
+                </div>
+
+                <!-- 项目3：OMS系统 -->
+                <div class="project-card">
+                    <h3>📋 OMS订单管理系统</h3>
+                    <p>
+                        面向经销商的订单管理平台，支持多渠道订单接入、智能拆单、
+                        库存分配与订单状态全链路管理。
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">订单管理</span>
+                        <span class="project-tag">经销商平台</span>
+                        <span class="project-tag">多渠道</span>
+                    </div>
+                    <a href="#experience" class="project-link">工作经历详情 →</a>
+                </div>
+
+                <!-- 项目4：TMS运输系统 -->
+                <div class="project-card">
+                    <h3>🚛 TMS运输管理系统</h3>
+                    <p>
+                        智能运输调度与追踪系统，整合承运商资源、优化运输路线、
+                        实现运输全程可视化监控。
+                    </p>
+                    <div class="project-tags">
+                        <span class="project-tag">运输调度</span>
+                        <span class="project-tag">物流追踪</span>
+                        <span class="project-tag">智能调度</span>
+                    </div>
+                    <a href="#experience" class="project-link">工作经历详情 →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== 工作经历区域 ========== -->
+        <section id="experience" class="container section">
+            <h2 class="section-title">工作经历</h2>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <span class="experience-title">产品经理</span>
+                    <span class="experience-period">2023年 - 至今</span>
+                </div>
+                <div class="experience-company">奇瑞汽车 · 供应链产品部</div>
+                <ul class="achievements">
+                    <li>主导OTD、OMS、TMS三大核心系统的产品设计与迭代优化</li>
+                    <li>通过流程优化与系统改进，实现供应链整体效率提升 <strong>20-33%</strong></li>
+                    <li>推动数据标准化建设，系统数据准确率达到 <strong>100%</strong></li>
+                    <li>参与供应商协同平台重构，助力年降本 <strong>3500万</strong></li>
+                    <li>正在学习AI Agent开发，探索大模型在供应链场景的落地</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ========== 联系方式区域 ========== -->
+        <section id="contact" class="container section">
+            <h2 class="section-title">联系方式</h2>
+            
+            <div class="contact-content">
+                <p>
+                    感谢您查看我的作品集！<br>
+                    如果您对我感兴趣，或有任何合作机会，欢迎联系我 👇
+                </p>
+                
+                <!-- 
+                    💡 提示：把 href 后面的邮箱地址改成你自己的
+                    mailto: 协议会自动打开本地邮件客户端
+                -->
+                <a href="mailto:your.email@example.com" class="contact-email">
+                    ✉️ 发送邮件联系
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========== 页脚 ========== -->
+    <footer class="footer">
+        <p>© 2024 二楠 · 产品经理 Portfolio</p>
+        <p>Built with ❤️ · 正在学习成长的路上</p>
+    </footer>
+
+    <!-- ========== JavaScript 脚本（可选） ========== -->
+    <script>
+        // 为所有项目卡片中的链接添加点击提示
+        // 当用户点击"查看详情"时，可以在这里添加更多交互逻辑
+        
+        document.querySelectorAll('.project-link').forEach(link => {
+            // 如果链接是 #，阻止默认行为
+            if (link.getAttribute('href') === '#') {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // 这里可以扩展更多功能，比如打开弹窗等
+                    console.log('项目详情功能待实现');
+                });
+            }
+        });
+
+        // 添加导航栏滚动效果：当页面滚动时，导航栏可以有轻微的变化
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.15)';
+            } else {
+                navbar.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)';
+            }
+        });
+    </script>
+</body>
+</html>
