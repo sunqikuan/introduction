@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <!-- viewport 让页面在移动设备和电脑上都能正常显示 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>二楠 | 产品经理 Portfolio</title>
+    <title>孙启宽 | 产品经理 Portfolio</title>
     
     <!-- ========== 样式定义开始 ========== -->
     <style>
@@ -346,6 +346,187 @@
             margin-bottom: 20px;
         }
 
+        .contact-info {
+            margin-top: 20px;
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: #24292e;
+        }
+
+        /* -------------------- 弹窗样式 -------------------- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            overflow: auto;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 900px;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            right: 20px;
+            top: 15px;
+        }
+
+        .modal-close:hover {
+            color: #000;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #24292e;
+            margin-bottom: 20px;
+            padding-right: 40px;
+        }
+
+        .modal-flowchart {
+            width: 100%;
+            margin-bottom: 25px;
+            border-radius: 6px;
+            border: 1px solid #e1e4e8;
+        }
+
+        .modal-section {
+            margin-bottom: 20px;
+        }
+
+        .modal-section h4 {
+            font-size: 1.1rem;
+            color: #0366d6;
+            margin-bottom: 10px;
+        }
+
+        .modal-section p {
+            color: #586069;
+            line-height: 1.8;
+        }
+
+        .modal-result {
+            background-color: #f6f8fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+        }
+
+        .modal-result strong {
+            color: #24292e;
+        }
+
+        /* -------------------- 轮播图样式 -------------------- */
+        .carousel-section {
+            background-color: #ffffff;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .carousel-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #24292e;
+            margin-bottom: 15px;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 6px;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            text-align: center;
+        }
+
+        .carousel-slide img {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 6px;
+        }
+
+        .carousel-caption {
+            padding: 10px;
+            color: #586069;
+            font-size: 0.9rem;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 18px;
+        }
+
+        .carousel-btn:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .carousel-prev {
+            left: 10px;
+        }
+
+        .carousel-next {
+            right: 10px;
+        }
+
+        .carousel-dots {
+            text-align: center;
+            padding: 15px 0;
+        }
+
+        .carousel-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #ccc;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .carousel-dot.active {
+            background-color: #0366d6;
+        }
+
         .contact-email {
             display: inline-block;
             background-color: #0366d6;
@@ -451,13 +632,14 @@
 <body>
     <!-- ========== 导航栏 ========== -->
     <nav class="navbar">
-        <div class="navbar-brand">二楠</div>
+        <div class="navbar-brand">孙启宽</div>
         <div class="navbar-links">
             <!-- href="#xxx" 是锚点链接，点击后会跳转到对应 id 的区域 -->
             <a href="#home">首页</a>
             <a href="#about">关于我</a>
             <a href="#projects">项目展示</a>
             <a href="#experience">工作经历</a>
+            <a href="#portfolio">作品集</a>
             <a href="#contact">联系方式</a>
         </div>
     </nav>
@@ -469,18 +651,20 @@
         <section id="home" class="container">
             <div class="hero">
                 <!-- 头像：使用文字代替图片，方便用户替换 -->
-                <div class="avatar">楠</div>
+                <div class="avatar">
+                    <img src="https://raw.githubusercontent.com/sunqikuan/introduction/main/images/touxiag.jpg" alt="头像" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                </div>
                 
                 <!-- 姓名 -->
-                <h1>你好，我是二楠 👋</h1>
+                <h1>你好，我是孙启宽 👋</h1>
                 
                 <!-- 副标题 -->
-                <p class="subtitle">一年以上产品经理经验 · B端/供应链方向</p>
+                <p class="subtitle">产品+项目经验 · B端/供应链背景</p>
                 
                 <!-- 简短介绍 -->
                 <p>
-                    热爱产品设计，专注于B端供应链领域。<br>
-                    正在学习AI Agent开发，探索大模型与产品的结合。
+                    擅长复杂场景下的需求拆解与产品落地，乐于在实战中学习和成长。</p>
+                    从自动化到供应链产品，从传统系统设计到AI Agent，持续探索中。
                 </p>
                 
                 <!-- 社交/跳转链接 -->
@@ -498,18 +682,17 @@
             <div class="about-content">
                 <!-- 个人简介 -->
                 <h3>👤 个人简介</h3>
-                <p>
-                    您好！我是一名拥有1年+产品经验的产品经理，专注于B端供应链领域。
-                    曾主导多个供应链核心系统（OTD、OMS、TMS）的产品设计与优化工作。
-                    目前正在学习AI Agent开发，致力于探索大模型在B端产品中的实际应用场景。
-                </p>
+                <p><strong>产品能力：</strong>需求挖掘、产品架构设计、PRD撰写、原型设计、跨系统数据接入、全流程项目落地</p>
+                <p><strong>项目成果：</strong>主导OTD数驱交付、计划协同（OMS+TMS）系统等核心项目，<strong>累计年降本超3800万元，效率提升20%-33%，数据准确率100%</strong></p>
+                <p><strong>技术背景：</strong>自动化专业出身，熟练掌握PLC编程、Python、Linux及Modbus通信协议，能深度协同研发、把控技术可行性与项目进度</p>
+                <p><strong>发展方向：</strong>学习AI Agent开发，探索大模型在供应链场景的产品化落地</p>
                 
                 <!-- 求职意向 -->
                 <h3>🎯 求职意向</h3>
                 <p>
-                    <strong>目标岗位：</strong>产品经理（B端/供应链方向）<br>
-                    <strong>期望行业：</strong>供应链、物流、制造业<br>
-                    <strong>发展兴趣：</strong>AI + 产品、Agent应用
+                    <strong>目标岗位：</strong>产品经理/项目经理<br>
+                    <strong>过往行业：</strong>供应链、物流、制造业<br>
+                    <strong>发展兴趣：</strong>产品、项目管理、AI+
                 </p>
                 
                 <!-- 技能清单 -->
@@ -517,14 +700,13 @@
                 <div class="skills">
                     <span class="skill-tag">产品设计</span>
                     <span class="skill-tag">需求分析</span>
+                    <span class="skill-tag">PRD撰写</span>
+                    <span class="skill-tag">流程图设计</span>
+                    <span class="skill-tag">原型设计</span>
+                    <span class="skill-tag">跨系统数据接入</span>
                     <span class="skill-tag">供应链系统</span>
-                    <span class="skill-tag">OTD系统</span>
-                    <span class="skill-tag">OMS系统</span>
-                    <span class="skill-tag">TMS系统</span>
                     <span class="skill-tag">Python</span>
-                    <span class="skill-tag">C语言</span>
-                    <span class="skill-tag">AI Agent开发</span>
-                    <span class="skill-tag">豆包API</span>
+                    <span class="skill-tag">AI Agent</span>
                 </div>
             </div>
         </section>
@@ -538,60 +720,61 @@
                 <div class="project-card">
                     <h3>🌤️ 天气预测Agent</h3>
                     <p>
-                        基于AI Agent架构的天气预测助手，接入豆包API实现智能对话与天气查询功能。
-                        正在学习Agent开发，探索大语言模型在实际产品中的应用。
+                        用LLM做的天气小助手，接入豆包API，理解自然语言、生成智能回复。
+                        从0到1学习Agent搭建，探索大模型在垂直场景的产品化落地。
                     </p>
                     <div class="project-tags">
                         <span class="project-tag">AI Agent</span>
-                        <span class="project-tag">豆包API</span>
+                        <span class="project-tag">cozeAPI</span>
                         <span class="project-tag">Python</span>
                     </div>
-                    <a href="#" class="project-link" onclick="alert('项目正在开发中，敬请期待！')">查看详情 →</a>
+                    <a href="javascript:void(0)" class="project-link" onclick="openModal('modal-weather')">查看详情 →</a>
                 </div>
 
                 <!-- 项目2：OTD系统 -->
                 <div class="project-card">
-                    <h3>📦 OTD订单履约系统</h3>
+                    <h3>📦 OTD订单数据系统</h3>
                     <p>
-                        订单到交付全流程管理系统，打通订单、生产、发运全链路，
+                        order to Delivery订单到交付全流程管理系统，打通订单、生产、发运、接车、入库全链路，
                         实现订单可视化追踪与自动化履约。
                     </p>
                     <div class="project-tags">
-                        <span class="project-tag">订单管理</span>
+                        <span class="project-tag">数据监控</span>
+                        <span class="project-tag">多系统打通</span>
                         <span class="project-tag">流程优化</span>
                         <span class="project-tag">B端SaaS</span>
                     </div>
-                    <a href="#experience" class="project-link">工作经历详情 →</a>
+                    <a href="javascript:void(0)" class="project-link" onclick="openModal('modal-otd')">查看详情 →</a>
                 </div>
 
                 <!-- 项目3：OMS系统 -->
                 <div class="project-card">
-                    <h3>📋 OMS订单管理系统</h3>
+                    <h3>📋 计划协同系统</h3>
                     <p>
-                        面向经销商的订单管理平台，支持多渠道订单接入、智能拆单、
-                        库存分配与订单状态全链路管理。
+                        面向采购计划员的齐套性匹配系统，监控日推移生产计划，并生成零件缺件情况，涵盖生产序列、总装/焊装齐套性、
+                        多供应商切换等信息。
                     </p>
                     <div class="project-tags">
-                        <span class="project-tag">订单管理</span>
-                        <span class="project-tag">经销商平台</span>
+                        <span class="project-tag">生产计划管理</span>
+                        <span class="project-tag">MES/APS/SAP/WMS多系统打通</span>
                         <span class="project-tag">多渠道</span>
                     </div>
-                    <a href="#experience" class="project-link">工作经历详情 →</a>
+                    <a href="javascript:void(0)" class="project-link" onclick="openModal('modal-oms')">查看详情 →</a>
                 </div>
 
                 <!-- 项目4：TMS运输系统 -->
                 <div class="project-card">
                     <h3>🚛 TMS运输管理系统</h3>
                     <p>
-                        智能运输调度与追踪系统，整合承运商资源、优化运输路线、
-                        实现运输全程可视化监控。
+                        特殊发运管理系统：专为会展车、试制车等非标准发运场景设计，
+                        打通内部审批与外部承运商，实现申请-审批-配板-接车全流程线上化，
+                        告别纸质单据丢失、流程遗漏的老问题。
                     </p>
                     <div class="project-tags">
-                        <span class="project-tag">运输调度</span>
-                        <span class="project-tag">物流追踪</span>
-                        <span class="project-tag">智能调度</span>
+                        <span class="project-tag">流程线上化</span>
+                        <span class="project-tag">承运商调度</span>
                     </div>
-                    <a href="#experience" class="project-link">工作经历详情 →</a>
+                    <a href="javascript:void(0)" class="project-link" onclick="openModal('modal-tms')">查看详情 →</a>
                 </div>
             </div>
         </section>
@@ -603,9 +786,9 @@
             <div class="experience-item">
                 <div class="experience-header">
                     <span class="experience-title">产品经理</span>
-                    <span class="experience-period">2023年 - 至今</span>
+                    <span class="experience-period">2025.3 - 2026.2</span>
                 </div>
-                <div class="experience-company">奇瑞汽车 · 供应链产品部</div>
+                <div class="experience-company">奇瑞汽车 · 数字化部</div>
                 <ul class="achievements">
                     <li>主导OTD、OMS、TMS三大核心系统的产品设计与迭代优化</li>
                     <li>通过流程优化与系统改进，实现供应链整体效率提升 <strong>20-33%</strong></li>
@@ -614,6 +797,32 @@
                     <li>正在学习AI Agent开发，探索大模型在供应链场景的落地</li>
                 </ul>
             </div>
+            
+            <!-- 第二段工作经历 -->
+            <div class="experience-item">
+                <div class="experience-header">
+                    <span class="experience-title">项目经理</span>
+                    <span class="experience-period">2024.7 - 2025.3</span>
+                </div>
+                <div class="experience-company">某军工厂（保密单位） · 项目实施部</div>
+                <ul class="achievements">
+                    <li>负责工业自动化系统方案设计、PLC 编程调试与现场部署，保障产线稳定运行</li>
+                    <li>完成电气图纸绘制、硬件配置与系统集成，快速诊断并解决设备故障</li>
+                    <li>统筹项目实施进度，协同团队攻克技术难题，提升交付效率与质量</li>
+                </ul>
+        </section>
+
+        <!-- ========== 作品集 ========== -->
+        <section id="portfolio" class="container section">
+            <h2 class="section-title">作品集</h2>
+            
+            <div class="about-content">
+                <p style="margin-bottom: 15px;">以下是我的PRD和UI设计作品，持续更新中...</p>
+                <div style="background: #f6f8fa; padding: 20px; border-radius: 6px; text-align: center;">
+                    <p style="color: #586069; margin-bottom: 10px;">📋 产品原型设计作品</p>
+                    <a href="https://axhub.im/ax9/5a71f2ea5bbc8e33/#g=1" target="_blank" style="color: #0366d6; font-size: 1.1rem;">点击查看原型 →</a>
+                </div>
+            </div>
         </section>
 
         <!-- ========== 联系方式区域 ========== -->
@@ -621,46 +830,279 @@
             <h2 class="section-title">联系方式</h2>
             
             <div class="contact-content">
-                <p>
-                    感谢您查看我的作品集！<br>
-                    如果您对我感兴趣，或有任何合作机会，欢迎联系我 👇
-                </p>
-                
-                <!-- 
-                    💡 提示：把 href 后面的邮箱地址改成你自己的
-                    mailto: 协议会自动打开本地邮件客户端
-                -->
-                <a href="mailto:your.email@example.com" class="contact-email">
-                    ✉️ 发送邮件联系
-                </a>
+                <div class="contact-info">
+                    <p>📧 邮箱：2410140734@qq.com</p>
+                    <p>📱 手机：17663218496</p>
+                </div>
             </div>
         </section>
+
+        <!-- ========== 项目详情弹窗 ========== -->
+        
+        <!-- 天气Agent弹窗 -->
+        <div id="modal-weather" class="modal">
+            <div class="modal-content">
+                <span class="modal-close" onclick="closeModal('modal-weather')">&times;</span>
+                <h3 class="modal-title">🌤️ 天气预测Agent</h3>
+                <img src="https://raw.githubusercontent.com/sunqikuan/introduction/main/images/%E5%A4%A9%E6%B0%94agent.png" alt="天气Agent配置截图" class="modal-flowchart">
+                <div class="modal-section">
+                    <h4>项目介绍</h4>
+                    <p>基于大语言模型（LLM）架构的天气助手，接入豆包API，实现意图理解、对话推理与智能回复。从0到1学习Agent搭建，探索大模型在垂直场景的产品化落地。</p>
+                </div>
+                <div class="modal-section">
+                    <h4>技术栈</h4>
+                    <p>Coze平台 · 豆包API · Python</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- OTD弹窗 -->
+        <div id="modal-otd" class="modal">
+            <div class="modal-content">
+                <span class="modal-close" onclick="closeModal('modal-otd')">&times;</span>
+                <h3 class="modal-title">📦 OTD数驱交付项目</h3>
+                <div class="carousel-container">
+                    <button class="carousel-btn carousel-prev" onclick="moveModalSlide('modal-otd', -1)">❮</button>
+                    <div class="carousel-track modal-carousel-track" id="modal-otd-carousel">
+                        <div class="carousel-slide">
+                            <img src="https://raw.githubusercontent.com/sunqikuan/introduction/main/images/OTD.png" alt="OTD流程图">
+                            <p class="carousel-caption">系统流程图</p>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://raw.githubusercontent.com/sunqikuan/introduction/main/images/OTD1.png" alt="OTD截图1">
+                            <p class="carousel-caption">OTD页面内容1</p>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://raw.githubusercontent.com/sunqikuan/introduction/main/images/OTD2.png" alt="OTD截图2">
+                            <p class="carousel-caption">OTD页面内容2</p>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://raw.githubusercontent.com/sunqikuan/introduction/main/images/OTD3.png" alt="OTD截图3">
+                            <p class="carousel-caption">OTD页面内容3</p>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://raw.githubusercontent.com/sunqikuan/introduction/main/images/OTD4.png" alt="OTD截图4">
+                            <p class="carousel-caption">OTD页面内容4</p>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://raw.githubusercontent.com/sunqikuan/introduction/main/images/OTD5.png" alt="OTD截图5">
+                            <p class="carousel-caption">OTD页面内容5</p>
+                        </div>
+                    </div>
+                    <button class="carousel-btn carousel-next" onclick="moveModalSlide('modal-otd', 1)">❯</button>
+                    <div class="carousel-dots">
+                        <span class="carousel-dot active" onclick="goToModalSlide('modal-otd', 0)"></span>
+                        <span class="carousel-dot" onclick="goToModalSlide('modal-otd', 1)"></span>
+                        <span class="carousel-dot" onclick="goToModalSlide('modal-otd', 2)"></span>
+                        <span class="carousel-dot" onclick="goToModalSlide('modal-otd', 3)"></span>
+                        <span class="carousel-dot" onclick="goToModalSlide('modal-otd', 4)"></span>
+                        <span class="carousel-dot" onclick="goToModalSlide('modal-otd', 5)"></span>
+                    </div>
+                </div>
+                <div class="modal-section">
+                    <h4>项目背景</h4>
+                    <p>传统库存模式存在响应慢、效率低，成本高等瓶颈，在数字化转型政策与行业技术升级的背景下，亟需"被动生产"转向"预测市场需求"，通过订单到交付全流程优化，构建高效、透明、稳定的业务体系。</p>
+                </div>
+                <div class="modal-section">
+                    <h4>工作内容</h4>
+                    <p>1、深入业务方，进行项目调研及痛点分析，挖掘项目价值及必要性。<br>2、设计产品架构，输出PRD、原型及交互，与开发团队协同完成产品。识别产品涉及的敏感数据，输出数据处理方案，满足数据安全需要。<br>3、与上游系统（LES、IMS、SAP等）数据对接，完成数据治理工作。UAT环境中，识别数据问题70余项，调整数据逻辑，满足业务数据可视化要求。<br>4、跟进产品试用、运维，编制操作手册并开展培训，推动项目验收与业务价值落地。</p>
+                </div>
+                <div class="modal-result">
+                    <p><strong>项目成果：</strong>打通7大节点全链路数据，数据准确率100%，订单全周期可视化、可追溯、可检验。提效20%，年节省37万元。获年度优秀项目团队。</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- OMS弹窗 -->
+        <div id="modal-oms" class="modal">
+            <div class="modal-content">
+                <span class="modal-close" onclick="closeModal('modal-oms')">&times;</span>
+                <h3 class="modal-title">📋 计划协同系统（OMS）</h3>
+                <div class="carousel-container">
+                    <button class="carousel-btn carousel-prev" onclick="moveModalSlide('modal-oms', -1)">❮</button>
+                    <div class="carousel-track modal-carousel-track" id="modal-oms-carousel">
+                        <div class="carousel-slide">
+                            <img src="https://raw.githubusercontent.com/sunqikuan/introduction/main/images/%E8%AE%A1%E5%88%92%E5%8D%8F%E5%90%8C.png" alt="计划协同流程图">
+                            <p class="carousel-caption">系统流程图</p>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://raw.githubusercontent.com/sunqikuan/introduction/main/images/oms1.png" alt="计划协同截图1">
+                            <p class="carousel-caption">OMS页面内容1</p>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://raw.githubusercontent.com/sunqikuan/introduction/main/images/oms2.png" alt="计划协同截图2">
+                            <p class="carousel-caption">OMS页面内容2</p>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="https://raw.githubusercontent.com/sunqikuan/introduction/main/images/oms3.png" alt="计划协同截图3">
+                            <p class="carousel-caption">OMS页面内容3</p>
+                        </div>
+                    </div>
+                    <button class="carousel-btn carousel-next" onclick="moveModalSlide('modal-oms', 1)">❯</button>
+                    <div class="carousel-dots">
+                        <span class="carousel-dot active" onclick="goToModalSlide('modal-oms', 0)"></span>
+                        <span class="carousel-dot" onclick="goToModalSlide('modal-oms', 1)"></span>
+                        <span class="carousel-dot" onclick="goToModalSlide('modal-oms', 2)"></span>
+                        <span class="carousel-dot" onclick="goToModalSlide('modal-oms', 3)"></span>
+                    </div>
+                </div>
+                <div class="modal-section">
+                    <h4>项目背景</h4>
+                    <p>物料计划员每月依据生产日推移表提报下月采购计划，但日推移表仅为整车需求，需人工拆解为零件需求。此过程耗时费力、错误率高，占用大量人力。亟需建设系统，实现零件采购计划自动生成。</p>
+                </div>
+                <div class="modal-section">
+                    <h4>工作内容</h4>
+                    <p>1、梳理功能架构与业务流程，识别业务所提需求为零件"毛需求"计算，引导业务拓展为"净需求"，与LES、MES、APS等系统数据接入，减少手工计算工作。<br>2、设计产品原型图，编写需求文档，评审通过后交付开发，全程跟进产品开发、测试、上线、运维过程。<br>3、与上游系统数据对接，通过SQL完成数据治理，推动系统集成与自动化落地。<br>4、完成项目交付，根据用户反馈不断进行功能迭代。</p>
+                </div>
+                <div class="modal-result">
+                    <p><strong>项目成果：</strong>齐套性数据自动化率90%，计划员效率提升10%，系统集成率80%。降低RDC周转天数5.8天，节约3500万元，年度人力成本降低36万元。</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- TMS弹窗 -->
+        <div id="modal-tms" class="modal">
+            <div class="modal-content">
+                <span class="modal-close" onclick="closeModal('modal-tms')">&times;</span>
+                <h3 class="modal-title">🚛 特殊发运平台（TMS）</h3>
+                <div class="carousel-container">
+                    <button class="carousel-btn carousel-prev" onclick="moveModalSlide('modal-tms', -1)">❮</button>
+                    <div class="carousel-track modal-carousel-track" id="modal-tms-carousel">
+                        <div class="carousel-slide">
+                            <img src="https://raw.githubusercontent.com/sunqikuan/introduction/main/images/%E7%89%B9%E6%AE%8A%E5%8F%91%E8%BF%90.png" alt="特殊发运流程图">
+                            <p class="carousel-caption">系统流程图</p>
+                        </div>
+                        <div class="carousel-slide hidden">
+                            <img src="https://raw.githubusercontent.com/sunqikuan/introduction/main/images/tms1.png" alt="TMS页面1">
+                            <p class="carousel-caption">发运申请页面</p>
+                        </div>
+                        <div class="carousel-slide hidden">
+                            <img src="https://raw.githubusercontent.com/sunqikuan/introduction/main/images/tms2.png" alt="TMS页面2">
+                            <p class="carousel-caption">审批流程页面</p>
+                        </div>
+                        <div class="carousel-slide hidden">
+                            <img src="https://raw.githubusercontent.com/sunqikuan/introduction/main/images/tms3.png" alt="TMS页面3">
+                            <p class="carousel-caption">物流跟踪页面</p>
+                        </div>
+                    </div>
+                    <button class="carousel-btn carousel-next" onclick="moveModalSlide('modal-tms', 1)">❯</button>
+                    <div class="carousel-dots">
+                        <span class="carousel-dot active" onclick="goToModalSlide('modal-tms', 0)"></span>
+                        <span class="carousel-dot" onclick="goToModalSlide('modal-tms', 1)"></span>
+                        <span class="carousel-dot" onclick="goToModalSlide('modal-tms', 2)"></span>
+                        <span class="carousel-dot" onclick="goToModalSlide('modal-tms', 3)"></span>
+                    </div>
+                </div>
+                <div class="modal-section">
+                    <h4>项目背景</h4>
+                    <p>奇瑞内部有特殊车辆发运需求（会展车/试制车），一直以来均为人工填审批单，线下完成全流程。流程冗长，且易遗漏，报销凭据丢失则需全程重新补签。设计特殊发运平台，实现内部审批人员及外部物流承运商线上完成审批、配板、接车信息录入。</p>
+                </div>
+                <div class="modal-section">
+                    <h4>工作内容</h4>
+                    <p>1、梳理业务线下完成车辆发运流程，各角色权限分析，整理业务需求及拓展业务思路。<br>2、产品框架梳理，设计产品原型并输出PRD。对接研发院试制车发车系统数据，设计审批流程及物流商权限矩阵，防止物流商价格泄露问题。<br>3、完成项目交付，同业务签订项目验收报告。</p>
+                </div>
+                <div class="modal-result">
+                    <p><strong>项目成果：</strong>特殊发运流程线上化率超过90%。整车物流人员处理特殊发运效率提升33%。</p>
+                </div>
+            </div>
+        </div>
 
     </main>
 
     <!-- ========== 页脚 ========== -->
     <footer class="footer">
-        <p>© 2024 二楠 · 产品经理 Portfolio</p>
+        <p>© 2024 孙启宽 · 产品经理 Portfolio</p>
         <p>Built with ❤️ · 正在学习成长的路上</p>
     </footer>
 
-    <!-- ========== JavaScript 脚本（可选） ========== -->
+    <!-- ========== JavaScript 脚本 ========== -->
     <script>
-        // 为所有项目卡片中的链接添加点击提示
-        // 当用户点击"查看详情"时，可以在这里添加更多交互逻辑
-        
-        document.querySelectorAll('.project-link').forEach(link => {
-            // 如果链接是 #，阻止默认行为
-            if (link.getAttribute('href') === '#') {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    // 这里可以扩展更多功能，比如打开弹窗等
-                    console.log('项目详情功能待实现');
+        // 弹窗功能
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden';  // 防止背景滚动
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';  // 恢复背景滚动
+        }
+
+        // 弹窗轮播图 - 左右切换
+        function moveModalSlide(modalId, direction) {
+            const carousel = document.getElementById(modalId + '-carousel');
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            const dotsContainer = carousel.parentElement.querySelector('.carousel-dots');
+            let currentIndex = 0;
+            
+            // 找到当前活跃的slide
+            slides.forEach((slide, index) => {
+                if (!slide.classList.contains('hidden')) {
+                    currentIndex = index;
+                }
+            });
+            
+            // 计算新的索引
+            let newIndex = currentIndex + direction;
+            if (newIndex < 0) newIndex = slides.length - 1;
+            if (newIndex >= slides.length) newIndex = 0;
+            
+            // 切换显示
+            slides[currentIndex].classList.add('hidden');
+            slides[newIndex].classList.remove('hidden');
+            
+            // 更新指示点
+            if (dotsContainer) {
+                const dots = dotsContainer.querySelectorAll('.carousel-dot');
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === newIndex);
                 });
+            }
+        }
+
+        // 弹窗轮播图 - 点击指示点跳转
+        function goToModalSlide(modalId, index) {
+            const carousel = document.getElementById(modalId + '-carousel');
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            const dotsContainer = carousel.parentElement.querySelector('.carousel-dots');
+            
+            // 切换显示
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('hidden', i !== index);
+            });
+            
+            // 更新指示点
+            if (dotsContainer) {
+                const dots = dotsContainer.querySelectorAll('.carousel-dot');
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+            }
+        }
+
+        // 点击弹窗外部区域关闭
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+
+        // ESC键关闭弹窗
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    modal.style.display = 'none';
+                });
+                document.body.style.overflow = 'auto';
             }
         });
 
-        // 添加导航栏滚动效果：当页面滚动时，导航栏可以有轻微的变化
+        // 添加导航栏滚动效果
         window.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {
